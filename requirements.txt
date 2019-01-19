@@ -1,3 +1,4 @@
 google-cloud-firestore
--e git+git@github.com:therefromhere/sure_petcare.git@306281ad2effca3bfc6e0c68559b2e5ba0532505#egg=sure_petcare
+#-e git+git@github.com:therefromhere/sure_petcare.git@306281ad2effca3bfc6e0c68559b2e5ba0532505#egg=sure_petcare
+-e git+https://github.com/therefromhere/sure_petcare.git@306281ad2effca3bfc6e0c68559b2e5ba0532505#egg=sure_petcare
 pytz

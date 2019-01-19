@@ -1,9 +1,10 @@
 import datetime
+import hashlib
 import os
 import pickle
 
-from google.cloud import firestore
 import pytz
+from google.cloud import firestore
 import sure_petcare
 
 
@@ -97,6 +98,8 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
             # TODO - restructure this to support multiple households, flaps
             "default_flap_locked": self.locked(),
             "default_flap_lock_mode": self.lock_mode(),
+            "device_id": self.device_id,
+            "gcloud_function_version": os.environ.get("X_GOOGLE_FUNCTION_VERSION"),
             "pet_statuses": pet_statuses,
         }
 
@@ -110,11 +113,22 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
         doc_ref.set(self.get_dict_for_firebase())
 
 
+def gen_device_id_from_bytes(b):
+    return str(int(hashlib.sha1(b).hexdigest(), 16))[:10]
+
+
 def update_firestore_cache():
     email_address = os.environ.get("SUREFLAP_EMAIL")
     password = os.environ.get("SUREFLAP_PASSWORD")
+    device_id = None
+
+    if os.environ.get("FUNCTION_IDENTITY"):
+        # google cloud function - set a deviceid since the sureflap api's way won't work
+        device_id = gen_device_id_from_bytes(
+            os.environ.get("FUNCTION_IDENTITY").encode()
+        )
 
     with SurePetFlapFireBaseCache(
-        email_address=email_address, password=password
+        email_address=email_address, password=password, device_id=device_id
     ) as api:
         api.update()
