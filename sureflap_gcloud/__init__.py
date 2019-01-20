@@ -155,4 +155,12 @@ def update_firestore_cache():
     with SurePetFlapFireBaseCache(
         email_address=email_address, password=password, device_id=device_id
     ) as api:
-        api.update()
+        # api.update()
+        api.update_authtoken()
+        api.update_households()
+        api.update_device_ids()
+        api.update_pet_info()
+        api.update_pet_status()
+        api.update_flap_status()
+        # api.update_router_status()
+        # api.update_timelines()
