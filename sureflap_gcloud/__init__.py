@@ -75,6 +75,26 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
             except pickle.PickleError:
                 pass
 
+    def get_api_update_datetime_range(self):
+        endpoint_times = set()
+
+        for k, v in self.cache.items():
+            if k.startswith("https://"):
+                # assume it's an endpoint cache
+
+                if v.get("ts"):
+                    ts = v["ts"]
+                    # force timezone
+                    ts = ts.replace(tzinfo=pytz.utc)
+                    endpoint_times.add(ts)
+
+        if endpoint_times:
+            endpoint_time_range = min(endpoint_times), max(endpoint_times)
+        else:
+            endpoint_time_range = None, None
+
+        return endpoint_time_range
+
     def get_dict_for_firebase(self):
         # TODO tidy this up
         household_id = self.default_household
@@ -89,6 +109,8 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
             pet_status["name"] = pet["name"]
             pet_statuses.append(pet_status)
 
+        endpoint_time_range = self.get_api_update_datetime_range()
+
         return {
             "AuthToken": self.cache["AuthToken"],
             "version": self.cache["version"],
@@ -100,6 +122,8 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
             "default_flap_lock_mode": self.lock_mode(),
             "device_id": self.device_id,
             "gcloud_function_version": os.environ.get("X_GOOGLE_FUNCTION_VERSION"),
+            "oldest_cached_api_data": endpoint_time_range[0],
+            "newest_cached_api_data": endpoint_time_range[1],
             "pet_statuses": pet_statuses,
         }
 
