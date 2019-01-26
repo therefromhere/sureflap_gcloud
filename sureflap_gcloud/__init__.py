@@ -1,11 +1,16 @@
 import datetime
 import hashlib
+import logging
 import os
 import pickle
 
 import pytz
+from astral import Location
 from google.cloud import firestore
+
 import sure_petcare
+
+logger = logging.getLogger(__name__)
 
 
 class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
@@ -19,6 +24,8 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
 
     def __init__(self, *args, **kwargs):
         self.db = firestore.Client()
+        self.curfew_start = None
+        self.curfew_end = None
 
         super().__init__(*args, **kwargs)
 
@@ -26,6 +33,72 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
         household_id = household_id or self.default_household
 
         return pytz.timezone(self.households[household_id]["olson_tz"])
+
+    def get_astral_location(self) -> Location:
+        """
+        ASTRAL_LOCATION is a comma separated string in the format of Astral's _LOCATION_INFO
+        name,region,latitude,longitude,time zone name, elevation (m)
+        eg: 'London,England,51°30'N,00°07'W,Europe/London,24'
+
+        name and country are purely for labelling, can anything
+        lat/long can be either in degrees and minutes or as a float (positive = North/East)
+        elevation is in metres
+        :return:
+        """
+        location_tuple = os.environ["ASTRAL_LOCATION"].split(",")
+        location = Location(location_tuple)
+        location.solar_depression = "civil"
+
+        return location
+
+    def set_curfew(self, household_id=None):
+        household_id = household_id or self.default_household
+
+        astral_location = self.get_astral_location()
+
+        sun_times = astral_location.sun(local=True)
+        self.curfew_start = sun_times["sunset"]
+        self.curfew_end = sun_times["sunrise"]
+
+        # TODO support multiple flaps
+        flap_id = self.get_default_flap(household_id=household_id)
+
+        url = f"{sure_petcare._URL_DEV}/{flap_id}/control"
+
+        curfew_data = {
+            "curfew": {
+                "lock_time": self.curfew_start.time().strftime("%H:%M"),
+                "unlock_time": self.curfew_end.time().strftime("%H:%M"),
+                "enabled": True,
+            }
+        }
+
+        logger.info(
+            f"curfew: {self.curfew_start} .. {self.curfew_end} - put data: {curfew_data}"
+        )
+        print(
+            f"curfew: {self.curfew_start} .. {self.curfew_end} - put data: {curfew_data}"
+        )
+
+        self._put_data(url=url, json=curfew_data)
+
+    def _put_data(self, url, params=None, json=None):
+        headers = self._create_header()
+        self._api_put(url, headers=headers, params=params, json=json)
+
+    def _api_put(self, url, *args, **kwargs):
+        r = self.s.put(url, *args, **kwargs)
+        if r.status_code == 401:
+            # Retry once
+            self.update_authtoken(force=True)
+            if "headers" in kwargs and "Authorization" in kwargs["headers"]:
+                kwargs["headers"]["Authorization"] = "Bearer " + self.cache["AuthToken"]
+                r = self.s.get(url, *args, **kwargs)
+            else:
+                raise sure_petcare.SPAPIException(
+                    "Auth required but not present in header"
+                )
+        return r
 
     def get_current_status_dict(self, pet_id, household_id=None):
         household_id = household_id or self.default_household
@@ -125,6 +198,8 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
             "oldest_cached_api_data": endpoint_time_range[0],
             "newest_cached_api_data": endpoint_time_range[1],
             "pet_statuses": pet_statuses,
+            "curfew_start": self.curfew_start,
+            "curfew_end": self.curfew_end,
         }
 
     def __exit__(self, *args, **kwargs):
@@ -164,3 +239,5 @@ def update_firestore_cache():
         api.update_flap_status()
         # api.update_router_status()
         # api.update_timelines()
+
+        api.set_curfew()

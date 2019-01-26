@@ -1,4 +1,5 @@
 google-cloud-firestore
-#-e git+git@github.com:therefromhere/sure_petcare.git@d4f7b7e705c2e35fb9ca06d6e61807ca7c3e6503#egg=sure_petcare
--e git+https://github.com/therefromhere/sure_petcare.git@d4f7b7e705c2e35fb9ca06d6e61807ca7c3e6503#egg=sure_petcare
+#-e git+git@github.com:therefromhere/sure_petcare.git@2d89478441b71b41fda3f088fac83806040e366b#egg=sure_petcare
+-e git+https://github.com/therefromhere/sure_petcare.git@2d89478441b71b41fda3f088fac83806040e366b#egg=sure_petcare
+astral
 pytz
