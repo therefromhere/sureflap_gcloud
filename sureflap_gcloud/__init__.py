@@ -34,6 +34,15 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
 
         return pytz.timezone(self.households[household_id]["olson_tz"])
 
+    def get_local_date(self, household_id=None):
+        household_id = household_id or self.default_household
+
+        tz = self.get_tz(household_id=household_id)
+        utc_now = pytz.utc.localize(datetime.datetime.utcnow())
+        local_now = utc_now.astimezone(tz)
+
+        return local_now.date()
+
     def get_astral_location(self) -> Location:
         """
         ASTRAL_LOCATION is a comma separated string in the format of Astral's _LOCATION_INFO
@@ -56,7 +65,9 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
 
         astral_location = self.get_astral_location()
 
-        sun_times = astral_location.sun(local=True)
+        # pass in local date otherwise system date is used,
+        # which causes a problem in NZ on the day the clocks change! (yesterday wasn't in DST)
+        sun_times = astral_location.sun(local=True, date=self.get_local_date())
         self.curfew_start = sun_times["sunset"]
         self.curfew_end = sun_times["sunrise"]
 
