@@ -77,11 +77,13 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
         url = f"{sure_petcare._URL_DEV}/{flap_id}/control"
 
         curfew_data = {
-            "curfew": {
-                "lock_time": self.curfew_start.time().strftime("%H:%M"),
-                "unlock_time": self.curfew_end.time().strftime("%H:%M"),
-                "enabled": True,
-            }
+            "curfew": [
+                {
+                    "lock_time": self.curfew_start.time().strftime("%H:%M"),
+                    "unlock_time": self.curfew_end.time().strftime("%H:%M"),
+                    "enabled": True,
+                }
+            ]
         }
 
         logger.info(
