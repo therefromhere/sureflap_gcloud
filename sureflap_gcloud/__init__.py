@@ -3,9 +3,11 @@ import hashlib
 import logging
 import os
 import pickle
+from typing import Tuple, Optional
 
 import pytz
-from astral import Location
+from astral import LocationInfo
+from astral.location import Location
 from google.cloud import firestore
 
 import sure_petcare
@@ -29,12 +31,12 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
 
         super().__init__(*args, **kwargs)
 
-    def get_tz(self, household_id=None):
+    def get_tz(self, household_id=None) -> datetime.tzinfo:
         household_id = household_id or self.default_household
 
         return pytz.timezone(self.households[household_id]["olson_tz"])
 
-    def get_local_date(self, household_id=None):
+    def get_local_date(self, household_id=None) -> datetime.date:
         household_id = household_id or self.default_household
 
         tz = self.get_tz(household_id=household_id)
@@ -45,9 +47,9 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
 
     def get_astral_location(self) -> Location:
         """
-        ASTRAL_LOCATION is a comma separated string in the format of Astral's _LOCATION_INFO
-        name,region,latitude,longitude,time zone name, elevation (m)
-        eg: 'London,England,51°30'N,00°07'W,Europe/London,24'
+        ASTRAL_LOCATION is a comma separated string in the format of Astral's LocationInfo
+        name,region,timezone,latitude,longitude
+        eg: 'London,England,Europe/London,51°30'N,00°07'W'
 
         name and country are purely for labelling, can anything
         lat/long can be either in degrees and minutes or as a float (positive = North/East)
@@ -55,8 +57,8 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
         :return:
         """
         location_tuple = os.environ["ASTRAL_LOCATION"].split(",")
-        location = Location(location_tuple)
-        location.solar_depression = "civil"
+        location_info = LocationInfo(*location_tuple)
+        location = Location(location_info)
 
         return location
 
@@ -113,7 +115,7 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
                 )
         return r
 
-    def get_current_status_dict(self, pet_id, household_id=None):
+    def get_current_status_dict(self, pet_id, household_id=None) -> dict:
         household_id = household_id or self.default_household
 
         if pet_id not in self.all_pet_status[household_id]:
@@ -129,7 +131,7 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
             "since": since_utc,
         }
 
-    def get_firebase_doc_ref(self):
+    def get_firebase_doc_ref(self) -> firestore.DocumentReference:
         return self.db.collection("account_cache").document(self.DOC_ID)
 
     def _load_cache(self):
@@ -161,7 +163,9 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
             except pickle.PickleError:
                 pass
 
-    def get_api_update_datetime_range(self):
+    def get_api_update_datetime_range(
+        self
+    ) -> Tuple[Optional[datetime.datetime], Optional[datetime.datetime]]:
         endpoint_times = set()
 
         for k, v in self.cache.items():
@@ -181,7 +185,7 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
 
         return endpoint_time_range
 
-    def get_dict_for_firebase(self):
+    def get_dict_for_firebase(self) -> dict:
         # TODO tidy this up
         household_id = self.default_household
         pets = self.get_pets(household_id=household_id)
@@ -225,7 +229,7 @@ class SurePetFlapFireBaseCache(sure_petcare.SurePetFlap):
         doc_ref.set(self.get_dict_for_firebase())
 
 
-def gen_device_id_from_bytes(b):
+def gen_device_id_from_bytes(b: bytes) -> str:
     return str(int(hashlib.sha1(b).hexdigest(), 16))[:10]
 
 
