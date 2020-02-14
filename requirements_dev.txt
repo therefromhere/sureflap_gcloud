@@ -1,2 +1,2 @@
 # implicitly installed in gcloud function environment
-flask
+functions-framework
