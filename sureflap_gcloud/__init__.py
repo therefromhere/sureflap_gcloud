@@ -238,11 +238,12 @@ def update_firestore_cache():
     password = os.environ.get("SUREFLAP_PASSWORD")
     device_id = None
 
-    if os.environ.get("FUNCTION_IDENTITY"):
+    cloud_function_name = os.environ.get("FUNCTION_TARGET")
+
+    if cloud_function_name:
+        print(f"using {cloud_function_name=}")
         # google cloud function - set a deviceid since the sureflap api's way won't work
-        device_id = gen_device_id_from_bytes(
-            os.environ.get("FUNCTION_IDENTITY").encode()
-        )
+        device_id = gen_device_id_from_bytes(cloud_function_name.encode())
 
     with SurePetFlapFireBaseCache(
         email_address=email_address, password=password, device_id=device_id
