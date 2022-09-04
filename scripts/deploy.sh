@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-poetry export --without-hashes -o requirements.txt
+./scripts/generate_requirements.sh
 gcloud functions deploy update --runtime=python310 --trigger-http --env-vars-file=.env_vars.yaml
