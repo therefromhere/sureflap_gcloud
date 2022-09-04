@@ -6,9 +6,10 @@
 # For more information, run:
 #   $ gcloud topic gcloudignore
 #
-.gcloudignore
-.git
-.gitignore
 
-# pycharm
-.idea
+# First ignore everything
+.*
+
+# Now include the files we want
+!requirements.txt
+!src/*.py
