@@ -1,2 +1,0 @@
-astral==2.2; python_version >= "3.6"
-pytz==2022.2.1
