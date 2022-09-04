@@ -1,2 +1,0 @@
-# implicitly installed in gcloud function environment
-functions-framework

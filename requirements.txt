@@ -1,5 +1,2 @@
-google-cloud-firestore
-#-e git+git@github.com:therefromhere/sure_petcare.git@2d89478441b71b41fda3f088fac83806040e366b#egg=sure_petcare
--e git+https://github.com/therefromhere/sure_petcare.git@2d89478441b71b41fda3f088fac83806040e366b#egg=sure_petcare
-astral>=2.1
-pytz>=2018.9
+astral==2.2; python_version >= "3.6"
+pytz==2022.2.1
