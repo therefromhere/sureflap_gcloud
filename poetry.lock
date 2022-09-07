@@ -59,10 +59,10 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "mypy (>=0.900,!=0.940)", "pytest-mypy-plugins", "zope.interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit", "cloudpickle"]
-docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
-tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "mypy (>=0.900,!=0.940)", "pytest-mypy-plugins", "zope.interface", "cloudpickle"]
-tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "mypy (>=0.900,!=0.940)", "pytest-mypy-plugins", "cloudpickle"]
+dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy (>=0.900,!=0.940)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "sphinx", "sphinx-notfound-page", "zope.interface"]
+docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
+tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "zope.interface"]
+tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "brotlipy"
@@ -149,7 +149,7 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-test = ["hypothesis (==3.55.3)", "flake8 (==3.7.8)"]
+test = ["flake8 (==3.7.8)", "hypothesis (==3.55.3)"]
 
 [[package]]
 name = "idna"
@@ -248,14 +248,21 @@ version = "0.7.2"
 description = "Library to interact with the flaps & doors from Sure Petcare."
 category = "main"
 optional = false
-python-versions = ">=3.8.0,<4.0.0"
+python-versions = "==3.*,>=3.8.0"
+develop = false
 
 [package.dependencies]
-aiohttp = {version = ">=3.7.4,<4.0.0", extras = ["speedups"]}
-async-timeout = ">=3.0.1,<4.0.0"
+aiohttp = {version = "^3.7.4", extras = ["speedups"]}
+async-timeout = "^3.0.1"
 click = ">=7.1.2,<9.0.0"
-requests = ">=2.24.0,<3.0.0"
-rich = ">=10.1.0,<11.0.0"
+requests = "^2.24.0"
+rich = "^10.1.0"
+
+[package.source]
+type = "git"
+url = "https://github.com/therefromhere/surepy.git"
+reference = "curfew"
+resolved_reference = "176bd4f9f16b8a2fb9a9b228361d5964c41849cc"
 
 [[package]]
 name = "typing-extensions"
@@ -274,8 +281,8 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, <4"
 
 [package.extras]
-brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "urllib3-secure-extra", "ipaddress"]
+brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)", "brotlipy (>=0.6.0)"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)", "urllib3-secure-extra"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
@@ -293,7 +300,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "885ba7402e64e6b5b61102ff48c3ee07bd3faf7518923f9c44e59dc731a59a48"
+content-hash = "c60e71ed2fbf4a264ed3cd01346c8ea5f6f16059e748b899ea5f9388f0b49c5d"
 
 [metadata.files]
 aiodns = [
@@ -656,10 +663,7 @@ rich = [
     {file = "rich-10.16.2-py3-none-any.whl", hash = "sha256:c59d73bd804c90f747c8d7b1d023b88f2a9ac2454224a4aeaf959b21eeb42d03"},
     {file = "rich-10.16.2.tar.gz", hash = "sha256:720974689960e06c2efdb54327f8bf0cdbdf4eae4ad73b6c94213cad405c371b"},
 ]
-surepy = [
-    {file = "surepy-0.7.2-py3-none-any.whl", hash = "sha256:f133fc2aac502f0f9836a7ba5f873ec713b4e37f559b8dcf2b5a5cdbe0a76c65"},
-    {file = "surepy-0.7.2.tar.gz", hash = "sha256:bea452b117ff4a44714353b241f4e5a218f9e86030688602ce93a078c543735e"},
-]
+surepy = []
 typing-extensions = [
     {file = "typing_extensions-4.3.0-py3-none-any.whl", hash = "sha256:25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02"},
     {file = "typing_extensions-4.3.0.tar.gz", hash = "sha256:e6d2677a32f47fc7eb2795db1dd15c1f34eff616bcaf2cfb5e997f854fa1c4a6"},

@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.10"
 astral = "^2.2"
 pytz = "^2022.2.1"
-surepy = "^0.7.2"
+surepy = {git = "https://github.com/therefromhere/surepy.git", rev = "curfew"}
 
 [tool.poetry.dev-dependencies]
 
