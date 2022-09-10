@@ -12,4 +12,8 @@
 
 # Now include the files we want
 !requirements.txt
-!src/*.py
+!main.py
+!sureflap_gcloud/*.py
+
+# Explicitly allow current dir. `gcloud deploy` fails without it.
+!.
