@@ -1,4 +1,5 @@
 # Project specific
+requirements.txt
 .env_vars.yaml
 
 # ------------
