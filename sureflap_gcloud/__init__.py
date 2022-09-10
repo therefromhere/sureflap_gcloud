@@ -29,8 +29,8 @@ def set_curfew():
         _set_curfew(
             device_id=int(os.environ["DEVICE_ID"]),
             token=os.environ["SUREPY_AUTH_TOKEN"],
-            lock_time=sun_times["sunset"],
-            unlock_time=sun_times["sunrise"],
+            lock_time=sun_times["sunset"].time(),
+            unlock_time=sun_times["sunrise"].time(),
         )
     )
 
@@ -38,6 +38,7 @@ def set_curfew():
 async def _set_curfew(
     *, device_id: int, token: str, lock_time: datetime.time, unlock_time: datetime.time
 ):
+
     sp = Surepy(auth_token=token)
 
     if (flap := await sp.get_device(device_id=device_id)) and (type(flap) == Flap):
