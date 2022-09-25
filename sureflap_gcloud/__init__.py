@@ -20,16 +20,7 @@ class CurfewTimes(NamedTuple):
 
 
 def set_curfew():
-    try:
-        location_tuple = os.environ["ASTRAL_LOCATION"].split(",")
-    except KeyError:
-        logger.error(
-            "Expected ASTRAL_LOCATION as a comma separated string in the format of Astral's LocationInfo, "
-            """eg: ASTRAL_LOCATION="Auckland,New Zealand,Pacific/Auckland,36°55'S,174°50'E" """
-        )
-        location_tuple = []
-
-    location = Location(LocationInfo(*location_tuple))
+    location = get_astral_location()
     curfew_times = get_curfew_times(location)
 
     asyncio.run(
@@ -40,6 +31,19 @@ def set_curfew():
             unlock_time=curfew_times.unlock_time,
         )
     )
+
+
+def get_astral_location() -> Location:
+    try:
+        location_tuple = os.environ["ASTRAL_LOCATION"].split(",")
+    except KeyError:
+        logger.error(
+            "Expected ASTRAL_LOCATION as a comma separated string in the format of Astral's LocationInfo, "
+            """eg: ASTRAL_LOCATION="Auckland,New Zealand,Pacific/Auckland,36°55'S,174°50'E" """
+        )
+        location_tuple = []
+
+    return Location(LocationInfo(*location_tuple))
 
 
 def get_curfew_times(location: Location) -> CurfewTimes:
