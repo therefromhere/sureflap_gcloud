@@ -15,5 +15,8 @@
 !main.py
 !sureflap_gcloud/*.py
 
+# Ignore these others
+tests/*
+
 # Explicitly allow current dir. `gcloud deploy` fails without it.
 !.
