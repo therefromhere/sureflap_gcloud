@@ -2,6 +2,8 @@ import asyncio
 import datetime
 import logging
 import os
+from datetime import time
+from typing import NamedTuple
 from typing import cast
 
 from astral import LocationInfo
@@ -10,6 +12,11 @@ from astral.location import Location
 from surepy import Flap, Surepy
 
 logger = logging.getLogger(__name__)
+
+
+class CurfewTimes(NamedTuple):
+    lock_time: time
+    unlock_time: time
 
 
 def set_curfew():
@@ -23,15 +30,22 @@ def set_curfew():
         location_tuple = []
 
     location = Location(LocationInfo(*location_tuple))
-    sun_times = location.sun(local=True)
+    curfew_times = get_curfew_times(location)
 
     asyncio.run(
         _set_curfew(
             device_id=int(os.environ["DEVICE_ID"]),
             token=os.environ["SUREPY_AUTH_TOKEN"],
-            lock_time=sun_times["sunset"].time(),
-            unlock_time=sun_times["sunrise"].time(),
+            lock_time=curfew_times.lock_time,
+            unlock_time=curfew_times.unlock_time,
         )
+    )
+
+
+def get_curfew_times(location: Location) -> CurfewTimes:
+    sun_times = location.sun(local=True)
+    return CurfewTimes(
+        lock_time=sun_times["sunset"].time(), unlock_time=sun_times["sunrise"].time()
     )
 
 
