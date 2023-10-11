@@ -14,3 +14,8 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-cloud-functions@v1'
+        with:
+          name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
+          runtime: 'python310'
