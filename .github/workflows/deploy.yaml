@@ -2,6 +2,7 @@ name: Deploy
 on: [push]
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     permissions:
       contents: 'read'
       id-token: 'write'
