@@ -35,7 +35,7 @@ jobs:
         run:
           location=${{vars.ASTRAL_LOCATION}}
           location_esc=${location//,\\\,}
-          echo "ASTRAL_LOCATION_ESC=${location_esc}"
+          echo "ASTRAL_LOCATION_ESC=${location_esc}" >> "$GITHUB_ENV"
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
