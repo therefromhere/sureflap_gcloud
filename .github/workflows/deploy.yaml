@@ -28,18 +28,16 @@ jobs:
         uses: abatilo/actions-poetry@v2
       - name: Generate Requirements
         run: poetry export --output=requirements.txt
-      - uses: mad9000/actions-find-and-replace-string@3
-        name: Escape commas in ASTRAL_LOCATION
-        id: astral_escaped
-      - name: debug env
-        run:
-          location="${{vars.ASTRAL_LOCATION}}"
-          location_esc="${location//,\\\,}"
-          echo "ASTRAL_LOCATION_ESC=${location_esc}" >> "$GITHUB_ENV"
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v2.0.2
+        with:
+          envkey_ASTRAL_LOCATION: ${{ vars.ASTRAL_LOCATION }}
+          envkey_DEVICE_ID: ${{ vars.DEVICE_ID }}
+          envkey_SUREPY_AUTH_TOKEN: ${{ secrets.SUREPY_AUTH_TOKEN }}
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
           name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
           runtime: 'python311'
           entry_point: "update"
-          env_vars: DEVICE_ID=${{ vars.DEVICE_ID }},ASTRAL_LOCATION=${{ env.location_esc }},SUREPY_AUTH_TOKEN=${{ secrets.SUREPY_AUTH_TOKEN }}
+          env_vars_file: .env
