@@ -34,7 +34,7 @@ jobs:
         with:
           source: ${{ vars.ASTRAL_LOCATION }}
           find: ','
-          replace: '\,'
+          replaceAll: '\,'
       - name: debug env
         run:
           echo "ASTRAL_LOCATION_ESC=${ASTRAL_LOCATION//,\\\,}"
