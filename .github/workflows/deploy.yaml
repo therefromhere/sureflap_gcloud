@@ -28,12 +28,6 @@ jobs:
         uses: abatilo/actions-poetry@v2
       - name: Generate Requirements
         run: poetry export --output=requirements.txt
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v2.0.2
-        with:
-          envkey_ASTRAL_LOCATION: "${{ vars.ASTRAL_LOCATION }}"
-          envkey_DEVICE_ID: ${{ vars.DEVICE_ID }}
-          envkey_SUREPY_AUTH_TOKEN: ${{ secrets.SUREPY_AUTH_TOKEN }}
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
@@ -41,3 +35,6 @@ jobs:
           runtime: 'python311'
           entry_point: "update"
           env_vars_file: .env
+          # TODO put these all in github or all in gcp
+          env_vars: DEVICE_ID=${{ vars.DEVICE_ID}}
+          secret_environment_variables: ASTRAL_LOCATION=projects/${{ steps.auth.outputs.project_id}}/secrets/ASTRAL_LOCATION,SUREPY_AUTH_TOKEN=projects/${{ steps.auth.outputs.project_id}}/secrets/surepy_auth_token
