@@ -358,25 +358,18 @@ jupyter = ["ipywidgets (>=7.5.1,<8.0.0)"]
 
 [[package]]
 name = "surepy"
-version = "0.8.0"
+version = "0.9.0a0"
 description = "Library to interact with the flaps & doors from Sure Petcare."
 category = "main"
 optional = false
-python-versions = "==3.*,>=3.8.0"
-develop = false
+python-versions = ">=3.8.0,<4.0.0"
 
 [package.dependencies]
-aiohttp = {version = "^3.7.4", extras = ["speedups"]}
+aiohttp = {version = ">=3.7.4,<4.0.0", extras = ["speedups"]}
 async-timeout = ">=3.0.1,<5.0"
 click = ">=7.1.2,<9.0.0"
-requests = "^2.24.0"
-rich = "^10.1.0"
-
-[package.source]
-type = "git"
-url = "https://github.com/therefromhere/surepy.git"
-reference = "curfew"
-resolved_reference = "15d2ea06287565a21e58ce789a1d45c11c0a8676"
+requests = ">=2.24.0,<3.0.0"
+rich = ">=10.1.0,<11.0.0"
 
 [[package]]
 name = "tomli"
@@ -428,7 +421,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "3d9e991d68f7ac5877ab3787d6ffd7daf16a9a3b2de37d7a09dcf479a6ac09d8"
+content-hash = "45ac994bb683123d08e959f57ab0a24538737abb70da4a113adf393a8d832c44"
 
 [metadata.files]
 aiodns = [
@@ -1000,7 +993,10 @@ rich = [
     {file = "rich-10.16.2-py3-none-any.whl", hash = "sha256:c59d73bd804c90f747c8d7b1d023b88f2a9ac2454224a4aeaf959b21eeb42d03"},
     {file = "rich-10.16.2.tar.gz", hash = "sha256:720974689960e06c2efdb54327f8bf0cdbdf4eae4ad73b6c94213cad405c371b"},
 ]
-surepy = []
+surepy = [
+    {file = "surepy-0.9.0a0-py3-none-any.whl", hash = "sha256:9969243ffcf07c31fc1c693cdd6619018d3f61aa7c34cee1c2d4197023a6c669"},
+    {file = "surepy-0.9.0a0.tar.gz", hash = "sha256:beae5e185b87d8a73576c9345ac693d3e5b07189152e80aa261c0d10e819f2d9"},
+]
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
     {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
