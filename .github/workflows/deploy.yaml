@@ -24,7 +24,7 @@ jobs:
       - name: Run image
         uses: abatilo/actions-poetry@v2
       - name: Generate Requirements
-        run: poetry export
+        run: poetry export --output=requirements.txt
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
