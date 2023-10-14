@@ -26,6 +26,10 @@ jobs:
           python-version: 3.11
       - name: Run image
         uses: abatilo/actions-poetry@v2
+      - name: Install dependencies
+        run: poetry install
+      - name: Test
+        run: poetry run pytest -v
       - name: Generate Requirements
         run: poetry export --output=requirements.txt
       - id: 'deploy'

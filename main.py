@@ -12,8 +12,19 @@ def update(request: flask.Request):
     client = google.cloud.logging.Client()
     client.setup_logging()
 
+    process()
+
     retval = {"status": "ok"}
+
+    return flask.jsonify(retval)
+
+
+def process():
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.INFO)
 
     sureflap_gcloud.set_curfew()
 
-    return flask.jsonify(retval)
+
+if __name__ == "__main__":
+    process()
