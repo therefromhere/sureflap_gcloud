@@ -33,8 +33,8 @@ jobs:
         id: astral_escaped
         with:
           source: ${{ vars.ASTRAL_LOCATION }}
-          find: ","
-          replace: "\,"
+          find: ','
+          replace: '\,'
       - name: debug env
         run:
           echo "ASTRAL_LOCATION_ESC=${ASTRAL_LOCATION//,\\\,}"
