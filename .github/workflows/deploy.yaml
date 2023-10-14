@@ -37,11 +37,13 @@ jobs:
           replaceAll: '\,'
       - name: debug env
         run:
-          echo "ASTRAL_LOCATION_ESC=${{env.ASTRAL_LOCATION//,\\\,}}"
+          location=${{env.ASTRAL_LOCATION}}
+          location_esc=${location//,\\\,}
+          echo "ASTRAL_LOCATION_ESC=${location_esc}"
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
           name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
           runtime: 'python311'
           entry_point: "update"
-          env_vars: DEVICE_ID=${{ vars.DEVICE_ID }},ASTRAL_LOCATION=${{ steps.astral_escaped.outputs.value }},SUREPY_AUTH_TOKEN=${{ secrets.SUREPY_AUTH_TOKEN }}
+          env_vars: DEVICE_ID=${{ vars.DEVICE_ID }},ASTRAL_LOCATION=${{ env.location_esc }},SUREPY_AUTH_TOKEN=${{ secrets.SUREPY_AUTH_TOKEN }}
