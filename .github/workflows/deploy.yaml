@@ -28,9 +28,11 @@ jobs:
         uses: abatilo/actions-poetry@v2
       - name: Generate Requirements
         run: poetry export --output=requirements.txt
-      - name: Escape env vars
+      - name: debug env
         run:
           echo "ASTRAL_LOCATION_ESC=${${{ vars.ASTRAL_LOCATION }}//,\\\,}"
+      - name: Escape env vars
+        run:
           echo "ASTRAL_LOCATION_ESC=${${{ vars.ASTRAL_LOCATION }}//,\\\,}" >> $GITHUB_ENV
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
