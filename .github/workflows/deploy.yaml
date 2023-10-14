@@ -28,16 +28,20 @@ jobs:
         uses: abatilo/actions-poetry@v2
       - name: Generate Requirements
         run: poetry export --output=requirements.txt
+      - uses: mad9000/actions-find-and-replace-string@3
+        name: Escape commas in ASTRAL_LOCATION
+        id: astral_escaped
+        with:
+          source: ${{ vars.ASTRAL_LOCATION }}
+          find: ","
+          replace: "\,"
       - name: debug env
         run:
           echo "ASTRAL_LOCATION_ESC=${ASTRAL_LOCATION//,\\\,}"
-      - name: Escape env vars
-        run:
-          echo "ASTRAL_LOCATION_ESC=${ASTRAL_LOCATION//,\\\,}" >> $GITHUB_ENV
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
           name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
           runtime: 'python311'
           entry_point: "update"
-          env_vars: DEVICE_ID=${{ vars.DEVICE_ID }},ASTRAL_LOCATION=${{ env.ASTRAL_LOCATION_ESC }},SUREPY_AUTH_TOKEN=${{ secrets.SUREPY_AUTH_TOKEN }}
+          env_vars: DEVICE_ID=${{ vars.DEVICE_ID }},ASTRAL_LOCATION=${{ steps.astral_escaped.outputs.value }},SUREPY_AUTH_TOKEN=${{ secrets.SUREPY_AUTH_TOKEN }}
