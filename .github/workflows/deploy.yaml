@@ -31,7 +31,7 @@ jobs:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v2.0.2
         with:
-          envkey_ASTRAL_LOCATION: ${{ vars.ASTRAL_LOCATION }}
+          envkey_ASTRAL_LOCATION: "${{ vars.ASTRAL_LOCATION }}"
           envkey_DEVICE_ID: ${{ vars.DEVICE_ID }}
           envkey_SUREPY_AUTH_TOKEN: ${{ secrets.SUREPY_AUTH_TOKEN }}
       - id: 'deploy'
