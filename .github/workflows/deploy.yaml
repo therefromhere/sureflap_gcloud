@@ -37,7 +37,7 @@ jobs:
           replaceAll: '\,'
       - name: debug env
         run:
-          echo "ASTRAL_LOCATION_ESC=${ASTRAL_LOCATION//,\\\,}"
+          echo "ASTRAL_LOCATION_ESC=${{env.ASTRAL_LOCATION//,\\\,}}"
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
