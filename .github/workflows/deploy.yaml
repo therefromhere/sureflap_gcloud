@@ -31,13 +31,9 @@ jobs:
       - uses: mad9000/actions-find-and-replace-string@3
         name: Escape commas in ASTRAL_LOCATION
         id: astral_escaped
-        with:
-          source: ${{ vars.ASTRAL_LOCATION }}
-          find: ','
-          replaceAll: '\,'
       - name: debug env
         run:
-          location=${{env.ASTRAL_LOCATION}}
+          location=${{vars.ASTRAL_LOCATION}}
           location_esc=${location//,\\\,}
           echo "ASTRAL_LOCATION_ESC=${location_esc}"
       - id: 'deploy'
