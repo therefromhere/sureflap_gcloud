@@ -18,9 +18,16 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+      - name: Generate Requirements
+        run: poetry export
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
           name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
-          runtime: 'python310'
+          runtime: 'python311'
           entry_point: "update"
