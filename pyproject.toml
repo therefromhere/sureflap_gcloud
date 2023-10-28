@@ -11,7 +11,7 @@ astral = ">=3.2"
 pytz = "^2023.3.post1"
 surepy = "^0.9.0a"
 asyncio = "^3.4.3"
-Flask = "^2.2.2"
+Flask = "^3.0.0"
 google-cloud-logging = "^3.8.0"
 
 [tool.poetry.group.dev.dependencies]
