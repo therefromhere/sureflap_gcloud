@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: 3.11
       - name: Install poetry
-        uses: abatilo/actions-poetry@v2.30
+        uses: abatilo/actions-poetry@v2.3.0
       - name: Install dependencies
         run: poetry install
       - name: Test
