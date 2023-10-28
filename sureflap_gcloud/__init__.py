@@ -59,7 +59,6 @@ def get_curfew_times(location: Location) -> CurfewTimes:
 async def _set_curfew(
     *, device_id: int, token: str, lock_time: datetime.time, unlock_time: datetime.time
 ):
-
     sp = Surepy(auth_token=token)
 
     if (flap := await sp.get_device(device_id=device_id)) and (type(flap) == Flap):
