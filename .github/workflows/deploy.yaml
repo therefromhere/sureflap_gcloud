@@ -14,18 +14,18 @@ jobs:
       id-token: 'write'
     concurrency: "prod"
     steps:
-      - uses: 'actions/checkout@v4'
+      - uses: 'actions/checkout@v4.1.1'
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
+        uses: 'google-github-actions/auth@v1.1.1'
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4.7.1
         with:
           python-version: 3.11
-      - name: Run image
-        uses: abatilo/actions-poetry@v2
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2.30
       - name: Install dependencies
         run: poetry install
       - name: Test
@@ -33,7 +33,7 @@ jobs:
       - name: Generate Requirements
         run: poetry export --output=requirements.txt
       - id: 'deploy'
-        uses: 'google-github-actions/deploy-cloud-functions@v1'
+        uses: 'google-github-actions/deploy-cloud-functions@v1.0.1'
         with:
           name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
           runtime: 'python311'
@@ -41,6 +41,6 @@ jobs:
           # TODO put these all in github or all in gcp
           env_vars: DEVICE_ID=${{ vars.DEVICE_ID}}
           secret_environment_variables: ASTRAL_LOCATION=projects/${{ steps.auth.outputs.project_id}}/secrets/ASTRAL_LOCATION/versions/latest,SUREPY_AUTH_TOKEN=projects/${{ steps.auth.outputs.project_id}}/secrets/SUREPY_AUTH_TOKEN/versions/latest
-      - name: trigger
+      - name: Trigger deployed function
         run:
           curl ${{ steps.deploy.outputs.url }}
