@@ -1589,13 +1589,13 @@ files = [
 
 [[package]]
 name = "surepy"
-version = "0.9.0a0"
+version = "0.9.0"
 description = "Library to interact with the flaps & doors from Sure Petcare."
 optional = false
-python-versions = ">=3.8.0,<4.0.0"
+python-versions = ">=3.8.0,<4.dev0"
 files = [
-    {file = "surepy-0.9.0a0-py3-none-any.whl", hash = "sha256:9969243ffcf07c31fc1c693cdd6619018d3f61aa7c34cee1c2d4197023a6c669"},
-    {file = "surepy-0.9.0a0.tar.gz", hash = "sha256:beae5e185b87d8a73576c9345ac693d3e5b07189152e80aa261c0d10e819f2d9"},
+    {file = "surepy-0.9.0-py3-none-any.whl", hash = "sha256:19fb93a9a125d926bbf22c3800f4bcd44286b5b8bca0158791ad9c9b389619ef"},
+    {file = "surepy-0.9.0.tar.gz", hash = "sha256:0d357c4d58b4436364c207d2ff23d01a3ccce2d58940120cdd7e2f11b5e8619f"},
 ]
 
 [package.dependencies]
@@ -1801,4 +1801,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "75b38f4c7b48ae86c1ba7d50970b838d717fcdf0de3895df332fb0dd9b69816b"
+content-hash = "8bfb2687b80402db4a6e4d64e111a7d0c93772455611a2e223898deb87682f7e"
