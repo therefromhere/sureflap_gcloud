@@ -1612,10 +1612,9 @@ name = "surepy"
 version = "0.9.0"
 description = "Library to interact with the flaps & doors from Sure Petcare."
 optional = false
-python-versions = ">=3.8.0,<4.dev0"
+python-versions = "==3.*,>=3.8.0"
 files = [
-    {file = "surepy-0.9.0-py3-none-any.whl", hash = "sha256:19fb93a9a125d926bbf22c3800f4bcd44286b5b8bca0158791ad9c9b389619ef"},
-    {file = "surepy-0.9.0.tar.gz", hash = "sha256:0d357c4d58b4436364c207d2ff23d01a3ccce2d58940120cdd7e2f11b5e8619f"},
+    {file = "dst_bug_workaround.zip", hash = "sha256:bf2132bd9b7539e38664d808350d17c2a04d25286205c8b7e5650f72a7c768e3"},
 ]
 
 [package.dependencies]
@@ -1624,6 +1623,10 @@ async-timeout = ">=3.0.1,<5.0"
 click = ">=7.1.2,<9.0.0"
 requests = ">=2.24.0,<3.0.0"
 rich = ">=10.1.0,<11.0.0"
+
+[package.source]
+type = "url"
+url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip"
 
 [[package]]
 name = "tomli"
@@ -1839,4 +1842,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "685a5f3de9ef6a4423148f4d36b57266767ea930ceaeecda1e9695bd4ab3e0b1"
+content-hash = "67fb1d616ea9dcf7afc9270d5b9ff6f80d935da6f070aec33e8829a6daf258c2"
