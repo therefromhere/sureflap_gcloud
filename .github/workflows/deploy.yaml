@@ -43,4 +43,4 @@ jobs:
           secret_environment_variables: ASTRAL_LOCATION=projects/${{ steps.auth.outputs.project_id}}/secrets/ASTRAL_LOCATION/versions/latest,SUREPY_AUTH_TOKEN=projects/${{ steps.auth.outputs.project_id}}/secrets/SUREPY_AUTH_TOKEN/versions/latest
       - name: Trigger deployed function
         run:
-          curl ${{ steps.deploy.outputs.url }}
+          curl ${{ steps.deploy.outputs.url }} --fail-with-body
