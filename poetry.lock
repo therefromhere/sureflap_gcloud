@@ -765,13 +765,13 @@ files = [
 
 [[package]]
 name = "functions-framework"
-version = "3.5.0"
+version = "3.6.0"
 description = "An open source FaaS (Function as a service) framework for writing portable Python functions -- brought to you by the Google Cloud Functions team."
 optional = false
-python-versions = ">=3.5, <4"
+python-versions = "<4,>=3.5"
 files = [
-    {file = "functions-framework-3.5.0.tar.gz", hash = "sha256:b6d0d640016d14241c928b0f0c71e831387897709dc70bf19698a64c381f9e57"},
-    {file = "functions_framework-3.5.0-py3-none-any.whl", hash = "sha256:ca4a027d1e8b0a201364614d06fef4abe5294ccb412b35bb982026a6b3e1be58"},
+    {file = "functions_framework-3.6.0-py3-none-any.whl", hash = "sha256:94c9a4d610374a5c41f97369efbba3817d025e403cc683dbfdb0c19fd6eed76a"},
+    {file = "functions_framework-3.6.0.tar.gz", hash = "sha256:c48c969826bd06424ea0e15fa8447c41ba3ad7134da7d411152391c1e67ff2bd"},
 ]
 
 [package.dependencies]
@@ -1843,4 +1843,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "67fb1d616ea9dcf7afc9270d5b9ff6f80d935da6f070aec33e8829a6daf258c2"
+content-hash = "335ad266510ba06433bb2fcc1588fdc7ff771850eb0932a2e6128817c1252c44"
