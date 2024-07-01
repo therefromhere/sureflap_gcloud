@@ -765,13 +765,13 @@ files = [
 
 [[package]]
 name = "functions-framework"
-version = "3.5.0"
+version = "3.8.0"
 description = "An open source FaaS (Function as a service) framework for writing portable Python functions -- brought to you by the Google Cloud Functions team."
 optional = false
-python-versions = ">=3.5, <4"
+python-versions = "<4,>=3.5"
 files = [
-    {file = "functions-framework-3.5.0.tar.gz", hash = "sha256:b6d0d640016d14241c928b0f0c71e831387897709dc70bf19698a64c381f9e57"},
-    {file = "functions_framework-3.5.0-py3-none-any.whl", hash = "sha256:ca4a027d1e8b0a201364614d06fef4abe5294ccb412b35bb982026a6b3e1be58"},
+    {file = "functions_framework-3.8.0-py3-none-any.whl", hash = "sha256:fdad66496c7fd3030a8170a8dfad1672f4713532e788e345d132e755634a07b7"},
+    {file = "functions_framework-3.8.0.tar.gz", hash = "sha256:c92c0e5e9b6ca1968edd54bf07da9aa4f8a9525f21ef761365ef35b352a73d2d"},
 ]
 
 [package.dependencies]
@@ -780,6 +780,7 @@ cloudevents = ">=1.2.0,<2.0.0"
 flask = ">=1.0,<4.0"
 gunicorn = {version = ">=19.2.0", markers = "platform_system != \"Windows\""}
 watchdog = ">=1.0.0"
+Werkzeug = ">=0.14,<4.0.0"
 
 [[package]]
 name = "google-api-core"
@@ -1843,4 +1844,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "67fb1d616ea9dcf7afc9270d5b9ff6f80d935da6f070aec33e8829a6daf258c2"
+content-hash = "f72eb9c3a25df82ce44ed485e3fbb33ec201993a4bdfdf36cdb3fbba2b089479"
