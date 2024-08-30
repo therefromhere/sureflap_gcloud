@@ -35,7 +35,7 @@ jobs:
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v3.0.5'
         with:
-          name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
+          name: "update2"
           runtime: 'python311'
           environment: GEN_2
           max_instance_count: 2
