@@ -5,7 +5,7 @@ import sureflap_gcloud
 import google.cloud.logging
 
 
-def update(request: flask.Request):
+def update2(request: flask.Request):
     """
     Google cloud function entrypoint
     """

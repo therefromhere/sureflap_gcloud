@@ -5,5 +5,5 @@ A Google Cloud function to talk to the SureFlap cat flap API using [benleb's sur
 ## To run locally for testing
 
 ```shell script
-functions_framework --target=update
+functions_framework --target=update2
 ```
