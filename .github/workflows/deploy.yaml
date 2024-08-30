@@ -27,7 +27,7 @@ jobs:
       - name: Install poetry
         uses: abatilo/actions-poetry@v3.0.0
       - name: Install poetry export plugin
-        run:
+        run: |
           poetry self add poetry-plugin-export
           poetry config warnings.export false
       - name: Install dependencies
