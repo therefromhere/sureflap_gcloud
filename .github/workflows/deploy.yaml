@@ -39,7 +39,7 @@ jobs:
           runtime: 'python311'
           environment: GEN_2
           max_instance_count: 2
-          entry_point: "update"
+          entry_point: "update2"
           # TODO put these all in github or all in gcp
           environment_variables: |-
             DEVICE_ID=${{ vars.DEVICE_ID}}
