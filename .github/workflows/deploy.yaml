@@ -21,7 +21,7 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
-      - uses: actions/setup-python@v5.1.0
+      - uses: actions/setup-python@v5.2.0
         with:
           python-version: 3.11
       - name: Install poetry
