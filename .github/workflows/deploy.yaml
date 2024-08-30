@@ -33,14 +33,18 @@ jobs:
       - name: Generate Requirements
         run: poetry export --output=requirements.txt
       - id: 'deploy'
-        uses: 'google-github-actions/deploy-cloud-functions@v2.1.0'
+        uses: 'google-github-actions/deploy-cloud-functions@v3.0.5'
         with:
           name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
           runtime: 'python311'
+          max_instance_count: 2
           entry_point: "update"
           # TODO put these all in github or all in gcp
-          env_vars: DEVICE_ID=${{ vars.DEVICE_ID}}
-          secret_environment_variables: ASTRAL_LOCATION=projects/${{ steps.auth.outputs.project_id}}/secrets/ASTRAL_LOCATION/versions/latest,SUREPY_AUTH_TOKEN=projects/${{ steps.auth.outputs.project_id}}/secrets/SUREPY_AUTH_TOKEN/versions/latest
+          environment_variables: |-
+            DEVICE_ID=${{ vars.DEVICE_ID}}
+          secrets: |-
+            ASTRAL_LOCATION=ASTRAL_LOCATION:latest
+            SUREPY_AUTH_TOKEN=SUREPY_AUTH_TOKEN:latest
       - name: Trigger deployed function
         run:
           curl ${{ steps.deploy.outputs.url }} --fail-with-body
