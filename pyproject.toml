@@ -11,9 +11,9 @@ astral = ">=3.2"
 pytz = ">=2024.1"
 surepy = {url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip"}
 asyncio = "^3.4.3"
-Flask = "^3.0.2"
-google-cloud-logging = "^3.9.0"
-functions-framework = "^3.5.0"
+Flask = "^3.0.3"
+google-cloud-logging = "^3.11.2"
+functions-framework = "^3.8.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"
