@@ -37,6 +37,7 @@ jobs:
         with:
           name: ${{ vars.GCP_CLOUD_FUNCTION_NAME }}
           runtime: 'python311'
+          environment: GEN_2
           max_instance_count: 2
           entry_point: "update"
           # TODO put these all in github or all in gcp
