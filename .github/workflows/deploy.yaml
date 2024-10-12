@@ -32,7 +32,7 @@ jobs:
       - name: Test
         run: uv run pytest -v
       - name: Generate Requirements
-        run: uv export --output=requirements.txt
+        run: uv export --output-file=requirements.txt
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v3.0.5'
         with:
