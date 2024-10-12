@@ -37,7 +37,7 @@ jobs:
         uses: 'google-github-actions/deploy-cloud-functions@v3.0.5'
         with:
           name: "update2"
-          runtime: 'python311'
+          runtime: 'python312'
           environment: GEN_2
           max_instance_count: 2
           entry_point: "update2"
