@@ -21,26 +21,23 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
-      - uses: actions/setup-python@v5.2.0
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+      - name: Set up Python
+        uses: actions/setup-python@v5.2.0
         with:
-          python-version: 3.11
-      - name: Install poetry
-        uses: abatilo/actions-poetry@v3.0.0
-      - name: Install poetry export plugin
-        run: |
-          poetry self add poetry-plugin-export
-          poetry config warnings.export false
-      - name: Install dependencies
-        run: poetry install
+          python-version-file: "pyproject.toml"        
+      - name: Install
+        run: uv sync
       - name: Test
-        run: poetry run pytest -v
+        run: uv run pytest -v
       - name: Generate Requirements
-        run: poetry export --output=requirements.txt
+        run: uv export --output-file=requirements.txt
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v3.0.5'
         with:
           name: "update2"
-          runtime: 'python311'
+          runtime: 'python312'
           environment: GEN_2
           max_instance_count: 2
           entry_point: "update2"
