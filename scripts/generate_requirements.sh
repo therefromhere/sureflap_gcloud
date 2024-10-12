@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-poetry export --without-hashes -o requirements.txt
+uv export -o requirements.txt
