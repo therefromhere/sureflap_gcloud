@@ -1,5 +1,5 @@
 [project]
-name = "sureflap-gcloud"
+name = "sureflap_gcloud"
 version = "0.1.0"
 description = "A Google Cloud function to talk to the SureFlap cat flap API using benleb's surepy python library"
 readme = "README.md"
@@ -23,3 +23,6 @@ dev-dependencies = [
 
 [tool.uv.sources]
 surepy = { url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip" }
+
+[tool.pytest.ini_options]
+pythonpath = "."
