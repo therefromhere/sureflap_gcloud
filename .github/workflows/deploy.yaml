@@ -34,7 +34,7 @@ jobs:
       - name: Generate Requirements
         run: uv export --output-file=requirements.txt
       - id: 'deploy'
-        uses: 'google-github-actions/deploy-cloud-functions@v3.0.5'
+        uses: 'google-github-actions/deploy-cloud-functions@v3.0.7'
         with:
           name: "update2"
           runtime: 'python312'
