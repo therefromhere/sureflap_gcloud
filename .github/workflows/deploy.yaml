@@ -45,8 +45,8 @@ jobs:
           environment_variables: |-
             DEVICE_ID=${{ vars.DEVICE_ID}}
           secrets: |-
-            ASTRAL_LOCATION=projects/${{ steps.auth.outputs.project_id}}/secrets/ASTRAL_LOCATION/versions/latest
-            SUREPY_AUTH_TOKEN=projects/${{ steps.auth.outputs.project_id}}/secrets/SUREPY_AUTH_TOKEN/versions/latest
+            ASTRAL_LOCATION=ASTRAL_LOCATION:latest
+            SUREPY_AUTH_TOKEN=SUREPY_AUTH_TOKEN:latest
       - name: Trigger deployed function
         run:
           curl ${{ steps.deploy.outputs.url }} --fail-with-body
