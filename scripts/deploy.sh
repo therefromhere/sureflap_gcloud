@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o nounset
+
 ./scripts/generate_requirements.sh
 gcloud functions deploy update2 --gen2 --runtime=python312 --region=us-central1 \
   --trigger-http --env-vars-file=.env_vars.yaml \

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-uv export -o requirements.txt
+uv export --output-file=requirements.txt --quiet
