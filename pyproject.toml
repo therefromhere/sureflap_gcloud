@@ -15,14 +15,16 @@ dependencies = [
     "surepy",
 ]
 
+[tool.uv.sources]
+surepy = { url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip" }
+
+[tool.pytest.ini_options]
+pythonpath = "."
+
 [tool.uv]
 dev-dependencies = [
     "pytest<8",
     "pytest-freezegun>=0.4.2",
 ]
 
-[tool.uv.sources]
-surepy = { url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip" }
-
-[tool.pytest.ini_options]
-pythonpath = "."
+# Note - scripts/uv-sync.sh will append here, it assumes tool.uv is the last section
