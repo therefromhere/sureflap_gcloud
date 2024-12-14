@@ -31,11 +31,11 @@ def set_curfew():
 
     location = get_astral_location(location_env)
     curfew_times = get_curfew_times(location)
+    device_id = int(os.environ["DEVICE_ID"])
 
     asyncio.run(
         _set_curfew(
-            device_id=int(os.environ["DEVICE_ID"]),
-            token=os.environ["SUREPY_AUTH_TOKEN"],
+            device_id=device_id,
             lock_time=curfew_times.lock_time,
             unlock_time=curfew_times.unlock_time,
         )
@@ -57,9 +57,9 @@ def get_curfew_times(location: Location) -> CurfewTimes:
 
 
 async def _set_curfew(
-    *, device_id: int, token: str, lock_time: datetime.time, unlock_time: datetime.time
+    *, device_id: int, lock_time: datetime.time, unlock_time: datetime.time
 ):
-    sp = Surepy(auth_token=token)
+    sp = Surepy()
 
     if (flap := await sp.get_device(device_id=device_id)) and (type(flap) == Flap):
         flap = cast(Flap, flap)
