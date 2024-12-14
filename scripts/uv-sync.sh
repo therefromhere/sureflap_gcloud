@@ -16,7 +16,7 @@ if [[ "$AUTHOR_NAME" == *dependabot* ]] ; then
     # Append constraint-dependencies to pyproject.toml
     cat <<EOF >> pyproject.toml
 
-[tool.uv]
+### generated scripts/uv-sync.sh ###
 constraint-dependencies = [
 $constraints
 ]
