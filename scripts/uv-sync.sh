@@ -3,10 +3,11 @@
 # adapted from https://github.com/win845/uv-light/blob/b4fabd9fc4fca621dd91bfe0a90e6ce6f17dd5ce/bin/uv-sync.sh
 
 set -e
+set -u
 
 PYTHON_VERSION=$(cat .python-version)
 #BRANCH_NAME=${GITHUB_REF#refs/heads/}
-#AUTHOR_NAME=$(git log -1 --pretty=format:"%an")
+AUTHOR_NAME=$(git log -1 --pretty=format:"%an")
 #AUTHOR_EMAIL=$(git log -1 --pretty=format:"%ae")
 
 if [[ "$AUTHOR_NAME" == *dependabot* ]] ; then
@@ -16,7 +17,7 @@ if [[ "$AUTHOR_NAME" == *dependabot* ]] ; then
     # Append constraint-dependencies to pyproject.toml
     cat <<EOF >> pyproject.toml
 
-### generated scripts/uv-sync.sh ###
+### generated scripts/uv-sync.sh , but not intended to be checked in! ###
 constraint-dependencies = [
 $constraints
 ]
