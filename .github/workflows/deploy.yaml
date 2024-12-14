@@ -22,7 +22,7 @@ jobs:
       id: uv-sync
       # a new commit will not trigger this workflow again
       run: |
-        ./scripts/uv-sync.sh
+        ./scripts/_piptools_to_uv.sh
     - name: Commit file
       uses: ryancyq/github-signed-commit@v1
       env:
@@ -58,7 +58,7 @@ jobs:
       - name: Test
         run: uv run pytest -v
       - name: Generate Requirements
-        run: ./scripts/generate_requirements.sh
+        run: ./scripts/_generate_requirements.sh
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloud-functions@v3.0.7'
         with:
