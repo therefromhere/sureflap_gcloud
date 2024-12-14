@@ -22,7 +22,7 @@ jobs:
       id: uv-sync
       # a new commit will not trigger this workflow again
       run: |
-        ./scripts/uv-sync.sh
+        ./scripts/_piptools_to_uv.sh
     - name: Commit file
       uses: ryancyq/github-signed-commit@v1
       env:
