@@ -16,13 +16,13 @@ jobs:
     - uses: 'actions/checkout@v4.2.0'
       with:
         fetch-depth: 2
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
     - name: UV sync
       id: uv-sync
       # a new commit will not trigger this workflow again
       run: |
-        pipx install uv
         ./scripts/uv-sync.sh
-
     - name: Commit file
       uses: ryancyq/github-signed-commit@v1
       env:
