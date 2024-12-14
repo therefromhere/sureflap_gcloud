@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -o nounset
+source ./scripts/_common_init.sh
 
 ./scripts/generate_requirements.sh
 gcloud functions deploy update2 --gen2 --runtime=python312 --region=us-central1 \
