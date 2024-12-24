@@ -1,8 +1,93 @@
 version = 1
 requires-python = ">=3.12"
 resolution-markers = [
-    "python_full_version < '3.13'",
-    "python_full_version >= '3.13'",
+    "python_full_version < '3.13' and platform_python_implementation == 'CPython' and sys_platform == 'win32'",
+    "python_full_version < '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'win32'",
+    "(python_full_version < '3.13' and platform_python_implementation == 'CPython' and sys_platform == 'darwin') or (python_full_version < '3.13' and platform_python_implementation == 'CPython' and sys_platform == 'linux')",
+    "(python_full_version < '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'darwin') or (python_full_version < '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
+    "python_full_version < '3.13' and platform_python_implementation == 'CPython' and sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version < '3.13' and platform_python_implementation != 'CPython' and sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version >= '3.13' and platform_python_implementation == 'CPython' and sys_platform == 'win32'",
+    "python_full_version >= '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'win32'",
+    "(python_full_version >= '3.13' and platform_python_implementation == 'CPython' and sys_platform == 'darwin') or (python_full_version >= '3.13' and platform_python_implementation == 'CPython' and sys_platform == 'linux')",
+    "(python_full_version >= '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'darwin') or (python_full_version >= '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
+    "python_full_version >= '3.13' and platform_python_implementation == 'CPython' and sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version >= '3.13' and platform_python_implementation != 'CPython' and sys_platform != 'darwin' and sys_platform != 'linux' and sys_platform != 'win32'",
+]
+
+[manifest]
+constraints = [
+    { name = "aiodns", marker = "sys_platform == 'darwin' or sys_platform == 'linux'", specifier = "==3.2.0" },
+    { name = "aiohappyeyeballs", specifier = "==2.4.4" },
+    { name = "aiohttp", specifier = "==3.11.10" },
+    { name = "aiosignal", specifier = "==1.3.2" },
+    { name = "astral", specifier = "==3.2" },
+    { name = "async-timeout", specifier = "==4.0.3" },
+    { name = "asyncio", specifier = "==3.4.3" },
+    { name = "attrs", specifier = "==24.2.0" },
+    { name = "blinker", specifier = "==1.9.0" },
+    { name = "brotli", marker = "platform_python_implementation == 'CPython'", specifier = "==1.1.0" },
+    { name = "brotlicffi", marker = "platform_python_implementation != 'CPython'", specifier = "==1.1.0.0" },
+    { name = "cachetools", specifier = "==5.5.0" },
+    { name = "certifi", specifier = "==2024.8.30" },
+    { name = "cffi", marker = "platform_python_implementation != 'CPython' or sys_platform == 'darwin' or sys_platform == 'linux'", specifier = "==1.17.1" },
+    { name = "charset-normalizer", specifier = "==3.4.0" },
+    { name = "click", specifier = "==8.1.7" },
+    { name = "cloudevents", specifier = "==1.11.0" },
+    { name = "colorama", specifier = "==0.4.6" },
+    { name = "commonmark", specifier = "==0.9.1" },
+    { name = "deprecated", specifier = "==1.2.15" },
+    { name = "deprecation", specifier = "==2.1.0" },
+    { name = "flask", specifier = "==3.1.0" },
+    { name = "freezegun", specifier = "==1.5.1" },
+    { name = "frozenlist", specifier = "==1.5.0" },
+    { name = "functions-framework", specifier = "==3.8.2" },
+    { name = "google-api-core", specifier = "==2.24.0" },
+    { name = "google-auth", specifier = "==2.37.0" },
+    { name = "google-cloud-appengine-logging", specifier = "==1.5.0" },
+    { name = "google-cloud-audit-log", specifier = "==0.3.0" },
+    { name = "google-cloud-core", specifier = "==2.4.1" },
+    { name = "google-cloud-logging", specifier = "==3.11.3" },
+    { name = "googleapis-common-protos", specifier = "==1.66.0" },
+    { name = "grpc-google-iam-v1", specifier = "==0.13.1" },
+    { name = "grpcio", specifier = "==1.68.1" },
+    { name = "grpcio-status", specifier = "==1.68.1" },
+    { name = "gunicorn", marker = "sys_platform != 'win32'", specifier = "==23.0.0" },
+    { name = "idna", specifier = "==3.10" },
+    { name = "importlib-metadata", specifier = "==8.5.0" },
+    { name = "iniconfig", specifier = "==2.0.0" },
+    { name = "itsdangerous", specifier = "==2.2.0" },
+    { name = "jinja2", specifier = "==3.1.5" },
+    { name = "markupsafe", specifier = "==3.0.2" },
+    { name = "multidict", specifier = "==6.1.0" },
+    { name = "opentelemetry-api", specifier = "==1.29.0" },
+    { name = "packaging", specifier = "==24.2" },
+    { name = "pluggy", specifier = "==1.5.0" },
+    { name = "propcache", specifier = "==0.2.1" },
+    { name = "proto-plus", specifier = "==1.25.0" },
+    { name = "protobuf", specifier = "==5.29.1" },
+    { name = "pyasn1", specifier = "==0.6.1" },
+    { name = "pyasn1-modules", specifier = "==0.4.1" },
+    { name = "pycares", marker = "sys_platform == 'darwin' or sys_platform == 'linux'", specifier = "==4.5.0" },
+    { name = "pycparser", marker = "platform_python_implementation != 'CPython' or sys_platform == 'darwin' or sys_platform == 'linux'", specifier = "==2.22" },
+    { name = "pygments", specifier = "==2.18.0" },
+    { name = "pytest", specifier = "==7.4.4" },
+    { name = "pytest-freezegun", specifier = "==0.4.2" },
+    { name = "python-dateutil", specifier = "==2.9.0.post0" },
+    { name = "pytz", specifier = "==2024.2" },
+    { name = "requests", specifier = "==2.32.3" },
+    { name = "rich", specifier = "==10.16.2" },
+    { name = "rsa", specifier = "==4.9" },
+    { name = "setuptools", specifier = "==75.6.0" },
+    { name = "six", specifier = "==1.17.0" },
+    { name = "surepy", url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip" },
+    { name = "tzdata", marker = "sys_platform == 'win32'", specifier = "==2024.2" },
+    { name = "urllib3", specifier = "==2.2.3" },
+    { name = "watchdog", specifier = "==6.0.0" },
+    { name = "werkzeug", specifier = "==3.1.3" },
+    { name = "wrapt", specifier = "==1.17.0" },
+    { name = "yarl", specifier = "==1.18.3" },
+    { name = "zipp", specifier = "==3.21.0" },
 ]
 
 [[package]]
@@ -10,7 +95,7 @@ name = "aiodns"
 version = "3.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycares" },
+    { name = "pycares", marker = "sys_platform == 'darwin' or sys_platform == 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/e7/84/41a6a2765abc124563f5380e76b9b24118977729e25a84112f8dfb2b33dc/aiodns-3.2.0.tar.gz", hash = "sha256:62869b23409349c21b072883ec8998316b234c9a9e36675756e8e317e8768f72", size = 7823 }
 wheels = [
@@ -183,7 +268,7 @@ name = "brotlicffi"
 version = "1.1.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi" },
+    { name = "cffi", marker = "platform_python_implementation != 'CPython'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/95/9d/70caa61192f570fcf0352766331b735afa931b4c6bc9a348a0925cc13288/brotlicffi-1.1.0.0.tar.gz", hash = "sha256:b77827a689905143f87915310b93b273ab17888fd43ef350d4832c4a71083c13", size = 465192 }
 wheels = [
@@ -218,7 +303,7 @@ name = "cffi"
 version = "1.17.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser" },
+    { name = "pycparser", marker = "platform_python_implementation != 'CPython' or sys_platform == 'darwin' or sys_platform == 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fc/97/c783634659c2920c3fc70419e3af40972dbaf758daa229a7d6ea6135c90d/cffi-1.17.1.tar.gz", hash = "sha256:1c39c6016c32bc48dd54561950ebd6836e1670f2ae46128f67cf49e789c52824", size = 516621 }
 wheels = [
@@ -290,7 +375,7 @@ name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de", size = 336121 }
 wheels = [
@@ -426,7 +511,7 @@ dependencies = [
     { name = "click" },
     { name = "cloudevents" },
     { name = "flask" },
-    { name = "gunicorn", marker = "platform_system != 'Windows'" },
+    { name = "gunicorn", marker = "sys_platform != 'win32'" },
     { name = "watchdog" },
     { name = "werkzeug" },
 ]
@@ -608,7 +693,7 @@ name = "gunicorn"
 version = "23.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "packaging" },
+    { name = "packaging", marker = "sys_platform != 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/34/72/9614c465dc206155d93eff0ca20d42e1e35afc533971379482de953521a4/gunicorn-23.0.0.tar.gz", hash = "sha256:f014447a0101dc57e294f6c18ca6b40227a4c90e9bdb586042628030cba004ec", size = 375031 }
 wheels = [
@@ -656,14 +741,14 @@ wheels = [
 
 [[package]]
 name = "jinja2"
-version = "3.1.4"
+version = "3.1.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markupsafe" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ed/55/39036716d19cab0747a5020fc7e907f362fbf48c984b14e62127f7e68e5d/jinja2-3.1.4.tar.gz", hash = "sha256:4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369", size = 240245 }
+sdist = { url = "https://files.pythonhosted.org/packages/af/92/b3130cbbf5591acf9ade8708c365f3238046ac7cb8ccba6e81abccb0ccff/jinja2-3.1.5.tar.gz", hash = "sha256:8fefff8dc3034e27bb80d67c671eb8a9bc424c0ef4c0826edbff304cceff43bb", size = 244674 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/31/80/3a54838c3fb461f6fec263ebf3a3a41771bd05190238de3486aae8540c36/jinja2-3.1.4-py3-none-any.whl", hash = "sha256:bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d", size = 133271 },
+    { url = "https://files.pythonhosted.org/packages/bd/0f/2ba5fbcd631e3e88689309dbe978c5769e883e4b84ebfe7da30b43275c5a/jinja2-3.1.5-py3-none-any.whl", hash = "sha256:aba0f4dc9ed8013c424088f68a5c226f7d6097ed89b246d7749c2ec4175c6adb", size = 134596 },
 ]
 
 [[package]]
@@ -867,7 +952,7 @@ name = "pycares"
 version = "4.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi" },
+    { name = "cffi", marker = "sys_platform == 'darwin' or sys_platform == 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/d7/b1/94daaa50b6d2fa14c6b4981ca24fa4e7aa33a7519962c76170072ffb06ee/pycares-4.5.0.tar.gz", hash = "sha256:025b6c2ffea4e9fb8f9a097381c2fecb24aff23fbd6906e70da22ec9ba60e19d", size = 821554 }
 wheels = [
