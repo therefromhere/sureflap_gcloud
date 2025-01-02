@@ -23,7 +23,7 @@ pythonpath = "."
 
 [tool.uv]
 dev-dependencies = [
-    "pytest<8",
+    "pytest>8",
     "pytest-freezegun>=0.4.2",
 ]
 
