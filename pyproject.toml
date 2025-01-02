@@ -12,11 +12,8 @@ dependencies = [
     "google-cloud-logging>=3.11.2",
     "pytz>=2024.2",
     "setuptools>=75.1.0",
-    "surepy",
+    "surepy>=0.9",
 ]
-
-[tool.uv.sources]
-surepy = { url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip" }
 
 [tool.pytest.ini_options]
 pythonpath = "."

@@ -1063,7 +1063,7 @@ requires-dist = [
     { name = "google-cloud-logging", specifier = ">=3.11.2" },
     { name = "pytz", specifier = ">=2024.2" },
     { name = "setuptools", specifier = ">=75.1.0" },
-    { name = "surepy", url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip" },
+    { name = "surepy", specifier = ">=0.9" },
 ]
 
 [package.metadata.requires-dev]
@@ -1075,7 +1075,7 @@ dev = [
 [[package]]
 name = "surepy"
 version = "0.9.0"
-source = { url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip" }
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp", extra = ["speedups"] },
     { name = "async-timeout" },
@@ -1083,15 +1083,9 @@ dependencies = [
     { name = "requests" },
     { name = "rich" },
 ]
-sdist = { url = "https://github.com/therefromhere/surepy/archive/refs/heads/dst_bug_workaround.zip", hash = "sha256:bf2132bd9b7539e38664d808350d17c2a04d25286205c8b7e5650f72a7c768e3" }
-
-[package.metadata]
-requires-dist = [
-    { name = "aiohttp", extras = ["speedups"], specifier = ">=3.7.4,<4.0.0" },
-    { name = "async-timeout", specifier = ">=3.0.1,<5.0" },
-    { name = "click", specifier = ">=7.1.2,<9.0.0" },
-    { name = "requests", specifier = ">=2.24.0,<3.0.0" },
-    { name = "rich", specifier = ">=10.1.0,<11.0.0" },
+sdist = { url = "https://files.pythonhosted.org/packages/8e/4a/bcd329399d7288fe2fd12dfc0c1905afcc64d80ed99419fca04f5fe0c723/surepy-0.9.0.tar.gz", hash = "sha256:0d357c4d58b4436364c207d2ff23d01a3ccce2d58940120cdd7e2f11b5e8619f", size = 22606 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/61/63/e6c8366304480534a2bbb6495058ddec1261d7f0373c3cd772bf7efb3f9f/surepy-0.9.0-py3-none-any.whl", hash = "sha256:19fb93a9a125d926bbf22c3800f4bcd44286b5b8bca0158791ad9c9b389619ef", size = 23557 },
 ]
 
 [[package]]
