@@ -60,7 +60,7 @@ jobs:
       - name: Generate Requirements
         run: ./scripts/_generate_requirements.sh
       - id: 'deploy'
-        uses: 'google-github-actions/deploy-cloud-functions@v3.0.7'
+        uses: 'google-github-actions/deploy-cloud-functions@v3.0.8'
         with:
           name: "update2"
           runtime: 'python312'
