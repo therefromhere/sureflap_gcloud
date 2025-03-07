@@ -27,4 +27,3 @@ dev-dependencies = [
     "pytest-freezegun>=0.4.2",
 ]
 
-# Note - scripts/_piptools_to_uv.sh will append here, it assumes tool.uv is the last section
