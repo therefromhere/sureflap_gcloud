@@ -1,6 +1,8 @@
 # Project specific
 .env_vars.yaml
 
+requirements.txt
+
 # ------------
 
 # Byte-compiled / optimized / DLL files
