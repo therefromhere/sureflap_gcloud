@@ -27,3 +27,6 @@ dev-dependencies = [
     "pytest-freezegun>=0.4.2",
 ]
 
+[tool.poe.tasks]
+# See https://poethepoet.natn.io/installation.html
+test = "pytest"
