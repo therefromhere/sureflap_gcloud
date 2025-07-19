@@ -31,11 +31,9 @@ def set_curfew():
 
     location = get_astral_location(location_env)
     curfew_times = get_curfew_times(location)
-    device_id = int(os.environ["DEVICE_ID"])
 
     asyncio.run(
         _set_curfew(
-            device_id=device_id,
             lock_time=curfew_times.lock_time,
             unlock_time=curfew_times.unlock_time,
         )
@@ -57,12 +55,18 @@ def get_curfew_times(location: Location) -> CurfewTimes:
 
 
 async def _set_curfew(
-    *, device_id: int, lock_time: datetime.time, unlock_time: datetime.time
+    *, lock_time: datetime.time, unlock_time: datetime.time
 ):
     sp = Surepy()
 
-    if (flap := await sp.get_device(device_id=device_id)) and (type(flap) == Flap):
-        flap = cast(Flap, flap)
+    for device in await sp.get_devices():
+        device_id = device.id
+
+        if type(device) != Flap:
+            logger.info(f"skipping {device_id=}, not a Flap")
+            continue
+
+        flap = device
 
         logger.info(
             f"setting %s curfew lock_time=%s unlock_time=%s",
@@ -74,6 +78,6 @@ async def _set_curfew(
         if await sp.sac.set_curfew(
             device_id=device_id, lock_time=lock_time, unlock_time=unlock_time
         ):
-            logger.info("set_curfew success")
+            logger.info(f"set_curfew on {device_id=} success")
         else:
-            logger.error("set_curfew may have failed, unexpected response")
+            logger.error(f"set_curfew on {device_id=} may have failed, unexpected response")
