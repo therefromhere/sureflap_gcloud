@@ -75,6 +75,19 @@ wheels = [
 ]
 
 [[package]]
+name = "anyio"
+version = "4.9.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "idna" },
+    { name = "sniffio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/95/7d/4c1bd541d4dffa1b52bd83fb8527089e097a106fc90b467a7313b105f840/anyio-4.9.0.tar.gz", hash = "sha256:673c0c244e15788651a4ff38710fea9675823028a6f08a5eda409e0c9840a028", size = 190949, upload-time = "2025-03-17T00:02:54.77Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a1/ee/48ca1a7c89ffec8b6a0c5d02b89c305671d5ffd8d3c94acf8b8c408575bb/anyio-4.9.0-py3-none-any.whl", hash = "sha256:9f76d541cad6e36af7beb62e978876f3b41e3e04f2c1fbf0884604c0a9c4d93c", size = 100916, upload-time = "2025-03-17T00:02:52.713Z" },
+]
+
+[[package]]
 name = "astral"
 version = "3.2"
 source = { registry = "https://pypi.org/simple" }
@@ -342,19 +355,22 @@ wheels = [
 
 [[package]]
 name = "functions-framework"
-version = "3.8.3"
+version = "3.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "cloudevents" },
     { name = "flask" },
     { name = "gunicorn", marker = "sys_platform != 'win32'" },
+    { name = "starlette" },
+    { name = "uvicorn" },
+    { name = "uvicorn-worker" },
     { name = "watchdog" },
     { name = "werkzeug" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/93/1f/367a737a58b53f22113e7f443598a3907d67a5ddf1c45f9d35a6ba642bb0/functions_framework-3.8.3.tar.gz", hash = "sha256:95827698469e3979518d52e32def2f11230465877fef32afd49045013b2a469c", size = 43640, upload-time = "2025-05-16T18:27:34.645Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/dc/8a/e5d305b3a1d2838d9c33c2aeb7ab6f84124a1bc929af1b1ddd7a6d27822b/functions_framework-3.9.2.tar.gz", hash = "sha256:4c9a25392b74f37fff45c679f48eb70849bfa59b7c191188794ffd0d46e7bc41", size = 54078, upload-time = "2025-07-28T17:56:26.174Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/26/52/b0b1fe1b964a9afe6b7da41c88434f09c16bf915cd48b9185e839f96fa6c/functions_framework-3.8.3-py3-none-any.whl", hash = "sha256:fd352272c02ee08b4a3445e234213e43fbdd350365d98e2cce13e1575490bffe", size = 36051, upload-time = "2025-05-16T18:27:33.037Z" },
+    { url = "https://files.pythonhosted.org/packages/0e/21/c35bf131447a0da1319e7a8c90807564697b7c0c262695a15cc3d1d7668b/functions_framework-3.9.2-py3-none-any.whl", hash = "sha256:c3b26dff88168a7405f9ee56b2fe9c2b2cbea5c9fe4d3cacbef85089a1e22c93", size = 41389, upload-time = "2025-07-28T17:56:25.211Z" },
 ]
 
 [[package]]
@@ -526,6 +542,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/34/72/9614c465dc206155d93eff0ca20d42e1e35afc533971379482de953521a4/gunicorn-23.0.0.tar.gz", hash = "sha256:f014447a0101dc57e294f6c18ca6b40227a4c90e9bdb586042628030cba004ec", size = 375031, upload-time = "2024-08-10T20:25:27.378Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/cb/7d/6dac2a6e1eba33ee43f318edbed4ff29151a49b5d37f080aad1e6469bca4/gunicorn-23.0.0-py3-none-any.whl", hash = "sha256:ec400d38950de4dfd418cff8328b2c8faed0edb0d517d3394e457c317908ca4d", size = 85029, upload-time = "2024-08-10T20:25:24.996Z" },
+]
+
+[[package]]
+name = "h11"
+version = "0.16.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/01/ee/02a2c011bdab74c6fb3c75474d40b3052059d95df7e73351460c8588d963/h11-0.16.0.tar.gz", hash = "sha256:4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1", size = 101250, upload-time = "2025-04-24T03:35:25.427Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl", hash = "sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86", size = 37515, upload-time = "2025-04-24T03:35:24.344Z" },
 ]
 
 [[package]]
@@ -884,6 +909,27 @@ wheels = [
 ]
 
 [[package]]
+name = "sniffio"
+version = "1.3.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a2/87/a6771e1546d97e7e041b6ae58d80074f81b7d5121207425c964ddf5cfdbd/sniffio-1.3.1.tar.gz", hash = "sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc", size = 20372, upload-time = "2024-02-25T23:20:04.057Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl", hash = "sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2", size = 10235, upload-time = "2024-02-25T23:20:01.196Z" },
+]
+
+[[package]]
+name = "starlette"
+version = "0.47.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/04/57/d062573f391d062710d4088fa1369428c38d51460ab6fedff920efef932e/starlette-0.47.2.tar.gz", hash = "sha256:6ae9aa5db235e4846decc1e7b79c4f346adf41e9777aebeb49dfd09bbd7023d8", size = 2583948, upload-time = "2025-07-20T17:31:58.522Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f7/1f/b876b1f83aef204198a42dc101613fefccb32258e5428b5f9259677864b4/starlette-0.47.2-py3-none-any.whl", hash = "sha256:c5847e96134e5c5371ee9fac6fdf1a67336d5815e09eb2a01fdb57a351ef915b", size = 72984, upload-time = "2025-07-20T17:31:56.738Z" },
+]
+
+[[package]]
 name = "sureflap-gcloud"
 version = "0.1.0"
 source = { virtual = "." }
@@ -960,6 +1006,32 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/aa/63/e53da845320b757bf29ef6a9062f5c669fe997973f966045cb019c3f4b66/urllib3-2.3.0.tar.gz", hash = "sha256:f8c5449b3cf0861679ce7e0503c7b44b5ec981bec0d1d3795a07f1ba96f0204d", size = 307268, upload-time = "2024-12-22T07:47:30.032Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c8/19/4ec628951a74043532ca2cf5d97b7b14863931476d117c471e8e2b1eb39f/urllib3-2.3.0-py3-none-any.whl", hash = "sha256:1cee9ad369867bfdbbb48b7dd50374c0967a0bb7710050facf0dd6911440e3df", size = 128369, upload-time = "2024-12-22T07:47:28.074Z" },
+]
+
+[[package]]
+name = "uvicorn"
+version = "0.35.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "h11" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5e/42/e0e305207bb88c6b8d3061399c6a961ffe5fbb7e2aa63c9234df7259e9cd/uvicorn-0.35.0.tar.gz", hash = "sha256:bc662f087f7cf2ce11a1d7fd70b90c9f98ef2e2831556dd078d131b96cc94a01", size = 78473, upload-time = "2025-06-28T16:15:46.058Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d2/e2/dc81b1bd1dcfe91735810265e9d26bc8ec5da45b4c0f6237e286819194c3/uvicorn-0.35.0-py3-none-any.whl", hash = "sha256:197535216b25ff9b785e29a0b79199f55222193d47f820816e7da751e9bc8d4a", size = 66406, upload-time = "2025-06-28T16:15:44.816Z" },
+]
+
+[[package]]
+name = "uvicorn-worker"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "gunicorn" },
+    { name = "uvicorn" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/37/c0/b5df8c9a31b0516a47703a669902b362ca1e569fed4f3daa1d4299b28be0/uvicorn_worker-0.3.0.tar.gz", hash = "sha256:6baeab7b2162ea6b9612cbe149aa670a76090ad65a267ce8e27316ed13c7de7b", size = 9181, upload-time = "2024-12-26T12:13:07.591Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f7/1f/4e5f8770c2cf4faa2c3ed3c19f9d4485ac9db0a6b029a7866921709bdc6c/uvicorn_worker-0.3.0-py3-none-any.whl", hash = "sha256:ef0fe8aad27b0290a9e602a256b03f5a5da3a9e5f942414ca587b645ec77dd52", size = 5346, upload-time = "2024-12-26T12:13:06.026Z" },
 ]
 
 [[package]]
